@@ -1,0 +1,79 @@
+package home.cart.checkout;
+
+import base.BaseTests;
+import base.dataProvider.CheckOutData;
+import org.testng.annotations.Test;
+import pages.CheckoutPage;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+public class CheckoutTests extends BaseTests {
+    @Test(dataProviderClass = CheckOutData.class , dataProvider = "PurchaseData")
+    public void testData(String name, String surname, int zipCode){
+        CheckoutPage checkoutPage = goCheckOutPage();
+        checkoutPage.enterFirstName(name);
+        checkoutPage.enterLastName(surname);
+        checkoutPage.enterZip(zipCode);
+        checkoutPage.clickContinueButton();
+
+        assertEquals(checkoutPage.textResult(),"Error: First Name is required");
+        assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
+        assertEquals(checkoutPage.textResult(),"Error: Postal Code is required");
+    }
+    @Test
+    public void testFirstNameFieldEmpty(){
+        CheckoutPage checkoutPage = goCheckOutPage();
+        checkoutPage.enterFirstName("");
+        checkoutPage.enterLastName("example");
+        checkoutPage.enterZip(1234);
+        checkoutPage.clickContinueButton();
+
+        //assertTrue(checkoutPage.isFirstNameEmpty(),"");
+        assertEquals(checkoutPage.textResult(),"Error: First Name is required");
+    }
+    @Test
+    public void testLastNameFieldEmpty(){
+        CheckoutPage checkoutPage = goCheckOutPage();
+        checkoutPage.enterFirstName("example");
+        checkoutPage.enterLastName("");
+        checkoutPage.enterZip(1234);
+        checkoutPage.clickContinueButton();
+
+        //assertTrue(checkoutPage.isLastNameEmpty(),"Error: Last Name is required");
+        assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
+    }
+//    @Test
+//    public void testZipFieldEmpty(){
+//        CheckoutPage checkoutPage = goCheckOutPage();
+//        checkoutPage.enterFirstName("example");
+//        checkoutPage.enterLastName("example");
+//        checkoutPage.enterZip();
+//        checkoutPage.clickContinueButton();
+//
+//        //assertTrue(checkoutPage.isZipEmpty(),"Error: Postal Code is required");
+//        assertEquals(checkoutPage.textResult(),"Error: Postal Code is required");
+//    }
+//    @Test
+//    public void testZipFieldDataType(){
+//        CheckoutPage checkoutPage = goCheckOutPage();
+//        checkoutPage.enterFirstName("example");
+//        checkoutPage.enterLastName("example");
+//        checkoutPage.enterZip("");
+//        checkoutPage.clickContinueButton();
+//    }
+    @Test
+    public void testCancelButton(){
+        CheckoutPage checkoutPage = goCheckOutPage();
+        checkoutPage.clickCancelButton();
+        getWindowManager().goBack();
+    }
+
+
+
+    private CheckoutPage goCheckOutPage(){
+        loginPage.setStandardUsername();
+        loginPage.setPassword();
+        return loginPage.clickLoginButton().goShoppingCart().goCheckout();
+    }
+}
