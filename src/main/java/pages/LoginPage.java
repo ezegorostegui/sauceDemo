@@ -47,7 +47,4 @@ public class LoginPage {
     public void setPasswordDP(String password){
         driver.findElement(this.password).sendKeys(password);
     }
-    public String check(){
-        return driver.findElement(By.xpath("//span[@class='title']")).getText();
-    }
 }

@@ -30,9 +30,9 @@ public class CheckoutPage {
         driver.findElement(cancelButton).click();
         return new ShoppingCartPage(driver);
     }
-    public BuyPage clickContinueButton(){
+    public CheckOutOverviewPage clickContinueButton(){
         driver.findElement(continueButton).click();
-        return new BuyPage(driver);
+        return new CheckOutOverviewPage(driver);
     }
     public Boolean isFirstNameEmpty(){
         return isFieldEmpty(firstName);
@@ -43,6 +43,7 @@ public class CheckoutPage {
     public Boolean isZipEmpty(){
         return isFieldEmpty(zip);
     }
+
 
     //Helper methods
     private Boolean isFieldEmpty(By locator){

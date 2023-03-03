@@ -3,6 +3,7 @@ package home.cart.checkout;
 import base.BaseTests;
 import base.dataProvider.CheckOutData;
 import org.testng.annotations.Test;
+import pages.CheckOutOverviewPage;
 import pages.CheckoutPage;
 
 import static org.testng.Assert.assertEquals;
@@ -10,16 +11,22 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckoutTests extends BaseTests {
     @Test(dataProviderClass = CheckOutData.class , dataProvider = "PurchaseData")
-    public void testData(String name, String surname, int zipCode){
+    public void testData(String name, String surname, int zipCode, String message){
         CheckoutPage checkoutPage = goCheckOutPage();
         checkoutPage.enterFirstName(name);
         checkoutPage.enterLastName(surname);
         checkoutPage.enterZip(zipCode);
-        checkoutPage.clickContinueButton();
+        CheckOutOverviewPage checkOutOverview = checkoutPage.clickContinueButton();
 
-        assertEquals(checkoutPage.textResult(),"Error: First Name is required");
-        assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
-        assertEquals(checkoutPage.textResult(),"Error: Postal Code is required");
+        if(message.isBlank()){
+            assertEquals(checkOutOverview.check(),"Checkout: Overview");
+        } else if (message.contains("First Name")) {
+            assertEquals(checkoutPage.textResult(),"Error: First Name is required");
+        } else if (message.contains("Last Name")) {
+            assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
+        } else {
+            assertEquals(checkoutPage.textResult(),"Error: Postal Code is required");
+        }
     }
     @Test
     public void testFirstNameFieldEmpty(){

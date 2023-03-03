@@ -14,10 +14,10 @@ public class LoginTests extends BaseTests {
     public void testLogIn(String user, String password, String message){
         loginPage.setUsernameDP(user);
         loginPage.setPasswordDP(password);
-        loginPage.clickLoginButton();
+        HomePage homePage = loginPage.clickLoginButton();
 
         if(message.isBlank()){
-            assertEquals(loginPage.check(),"Products");
+            assertEquals(homePage.check(),"Products");
         } else if (message.contains("Password is required")) {
             assertEquals(message,"Epic sadface: Password is required");
         } else {

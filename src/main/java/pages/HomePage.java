@@ -35,13 +35,16 @@ public class HomePage {
     }
     public List<String> getSelectedOptions(){
         List<WebElement> selectedElements = findDropdownElement().getAllSelectedOptions();
-        return selectedElements.stream().map(e ->e.getText()).collect(Collectors.toList());
+        return selectedElements.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     //Methods for shopping cart
     public ShoppingCartPage goShoppingCart(){
         selectAndClickLocator(cart);
         return new ShoppingCartPage(driver);
+    }
+    public String check(){
+        return driver.findElement(By.xpath("//span[@class='title']")).getText();
     }
 
     //Helper methods
