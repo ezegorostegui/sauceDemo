@@ -1,7 +1,8 @@
 package pages;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utils.HoverMenu;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,19 +14,24 @@ import java.util.stream.Collectors;
 public class HomePage {
     private final WebDriver driver;
     private WebElement hoverElement;
-    private final By menuButton = By.id("react-burger-menu-btn");
-    private final By filter = By.cssSelector("select.product_sort_container");
-    private final By cart = By.cssSelector("#shopping_cart_container > a");
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement menuButton;
+    @FindBy(css = "select.product_sort_container")
+    private WebElement filter;
+    @FindBy(css = "#shopping_cart_container > a")
+    private WebElement cart;
+    @FindBy(xpath = "//span[@class='title']")
+    private WebElement title;
 
     public HomePage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
     //Methods for menu
     public HoverMenu selectMenuOptions(){
-        hoverElement = driver.findElement(menuButton);
         Actions action = new Actions(driver);
-        action.moveToElement(hoverElement).click().perform();
+        action.moveToElement(menuButton).click().perform();
         return new HoverMenu(driver,hoverElement);
     }
 
@@ -44,14 +50,14 @@ public class HomePage {
         return new ShoppingCartPage(driver);
     }
     public String check(){
-        return driver.findElement(By.xpath("//span[@class='title']")).getText();
+        return title.getText();
     }
 
     //Helper methods
-    private void selectAndClickLocator(By locator){
-        driver.findElement(locator).click();
+    private void selectAndClickLocator(WebElement locator){
+        locator.click();
     }
     private Select findDropdownElement(){
-        return new Select(driver.findElement(filter));
+        return new Select(filter);
     }
 }

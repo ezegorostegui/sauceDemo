@@ -1,27 +1,34 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CheckOutOverviewPage {
-    private WebDriver driver;
-    private By cancelButton = By.id("cancel");
-    private By finishButton = By.id("finish");
+    private final WebDriver driver;
+    @FindBy(id = "cancel")
+    private WebElement cancelButton;
+    @FindBy(id = "finish")
+    private WebElement finishButton;
+    @FindBy(xpath = "//span[@class='title']")
+    private WebElement title;
 
     public CheckOutOverviewPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
 
     public HomePage clickCancelButton(){
-        driver.findElement(cancelButton).click();
+        cancelButton.click();
         return new HomePage(driver);
     }
     public CheckoutCompletePage clickFinishButton(){
-        driver.findElement(finishButton).click();
+        finishButton.click();
         return new CheckoutCompletePage(driver);
     }
     public String check(){
-        return driver.findElement(By.xpath("//span[@class='title']")).getText();
+        return title.getText();
     }
 }

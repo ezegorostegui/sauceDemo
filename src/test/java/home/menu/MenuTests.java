@@ -1,7 +1,6 @@
 package home.menu;
 
 import base.BaseTests;
-import org.testng.annotations.BeforeTest;
 import utils.HoverMenu;
 import org.testng.annotations.Test;
 import pages.AboutPage;
@@ -25,7 +24,7 @@ public class MenuTests extends BaseTests {
         AboutPage aboutPage = homePage.selectMenuOptions().clickAboutLink();
 
         assertEquals(aboutPage.getTitle(),
-                "Cross Browser Testing, Selenium Testing, Mobile Testing | Sauce Labs");
+                "Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing");
     }
     @Test
     public void testLogOut(){

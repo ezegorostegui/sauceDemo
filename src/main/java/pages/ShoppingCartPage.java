@@ -1,24 +1,29 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ShoppingCartPage {
     private WebDriver driver;
-    private By home = By.id("continue-shopping");
-    private By checkout = By.id("checkout");
+    @FindBy(id = "continue-shopping")
+    private WebElement home;
+    @FindBy(id = "checkout")
+    private WebElement checkout;
 
     public ShoppingCartPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
 
     public HomePage goHome(){
-        driver.findElement(home).click();
+        home.click();
         return new HomePage(driver);
     }
     public CheckoutPage goCheckout(){
-        driver.findElement(checkout).click();
+        checkout.click();
         return new CheckoutPage(driver);
     }
 }

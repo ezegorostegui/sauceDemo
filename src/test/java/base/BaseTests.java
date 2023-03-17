@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
 import utils.WindowManager;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.File;
 import java.io.IOException;
 
@@ -23,7 +24,10 @@ public class BaseTests {
     @BeforeClass
     public void setUp(){
         System.setProperty("webdriver.chrome.driver","resources/chromedriver");
-        driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         goLogin();
     }
     @BeforeMethod

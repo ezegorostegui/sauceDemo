@@ -10,8 +10,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CheckoutTests extends BaseTests {
-    @Test(dataProviderClass = CheckOutData.class , dataProvider = "PurchaseData")
-    public void testData(String name, String surname, int zipCode, String message){
+    @Test(dataProviderClass = CheckOutData.class , dataProvider = "checkOutData")
+    public void testData(String name, String surname, String zipCode, String message){
         CheckoutPage checkoutPage = goCheckOutPage();
         checkoutPage.enterFirstName(name);
         checkoutPage.enterLastName(surname);
@@ -28,28 +28,28 @@ public class CheckoutTests extends BaseTests {
             assertEquals(checkoutPage.textResult(),"Error: Postal Code is required");
         }
     }
-    @Test
-    public void testFirstNameFieldEmpty(){
-        CheckoutPage checkoutPage = goCheckOutPage();
-        checkoutPage.enterFirstName("");
-        checkoutPage.enterLastName("example");
-        checkoutPage.enterZip(1234);
-        checkoutPage.clickContinueButton();
-
-        //assertTrue(checkoutPage.isFirstNameEmpty(),"");
-        assertEquals(checkoutPage.textResult(),"Error: First Name is required");
-    }
-    @Test
-    public void testLastNameFieldEmpty(){
-        CheckoutPage checkoutPage = goCheckOutPage();
-        checkoutPage.enterFirstName("example");
-        checkoutPage.enterLastName("");
-        checkoutPage.enterZip(1234);
-        checkoutPage.clickContinueButton();
-
-        //assertTrue(checkoutPage.isLastNameEmpty(),"Error: Last Name is required");
-        assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
-    }
+//    @Test
+//    public void testFirstNameFieldEmpty(){
+//        CheckoutPage checkoutPage = goCheckOutPage();
+//        checkoutPage.enterFirstName("");
+//        checkoutPage.enterLastName("example");
+//        checkoutPage.enterZip(1234);
+//        checkoutPage.clickContinueButton();
+//
+//        //assertTrue(checkoutPage.isFirstNameEmpty(),"");
+//        assertEquals(checkoutPage.textResult(),"Error: First Name is required");
+//    }
+//    @Test
+//    public void testLastNameFieldEmpty(){
+//        CheckoutPage checkoutPage = goCheckOutPage();
+//        checkoutPage.enterFirstName("example");
+//        checkoutPage.enterLastName("");
+//        checkoutPage.enterZip(1234);
+//        checkoutPage.clickContinueButton();
+//
+//        //assertTrue(checkoutPage.isLastNameEmpty(),"Error: Last Name is required");
+//        assertEquals(checkoutPage.textResult(),"Error: Last Name is required");
+//    }
 //    @Test
 //    public void testZipFieldEmpty(){
 //        CheckoutPage checkoutPage = goCheckOutPage();

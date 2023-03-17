@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTests extends BaseTests {
 
-    @Test(dataProviderClass = LoginData.class , dataProvider = "login_provider2")
+    @Test(dataProviderClass = LoginData.class , dataProvider = "userDetails")
     public void testLogIn(String user, String password, String message){
         loginPage.setUsernameDP(user);
         loginPage.setPasswordDP(password);
