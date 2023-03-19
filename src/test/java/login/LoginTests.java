@@ -1,16 +1,19 @@
 package login;
 
 import base.BaseTests;
+import base.dataProvider.DataProviderClass;
 import base.dataProvider.LoginData;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+@Listeners(base.Listener.class)
 public class LoginTests extends BaseTests {
 
-    @Test(dataProviderClass = LoginData.class , dataProvider = "userDetails")
+    @Test(dataProviderClass = DataProviderClass.class , dataProvider = "searchProvider")
     public void testLogIn(String user, String password, String message){
         loginPage.setUsernameDP(user);
         loginPage.setPasswordDP(password);

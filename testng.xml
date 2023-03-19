@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+    <listeners>
+        <listener class-name="base.Listener"></listener>
+    </listeners>
+    <test thread-count="3" name="saucedemoTest">
+        <classes>
+            <class name="login.LoginTests"></class>
+            <class name="home.cart.checkout.CheckoutTests"></class>
+            <class name="home.menu.MenuTests"></class>
+        </classes>
+    </test>
+</suite>

@@ -1,16 +1,19 @@
 package home.cart.checkout;
 
 import base.BaseTests;
+//import base.dataProvider.CheckOutData;
 import base.dataProvider.CheckOutData;
+import base.dataProvider.DataProviderClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CheckOutOverviewPage;
 import pages.CheckoutPage;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
+@Listeners(base.Listener.class)
 public class CheckoutTests extends BaseTests {
-    @Test(dataProviderClass = CheckOutData.class , dataProvider = "checkOutData")
+    @Test(dataProviderClass = DataProviderClass.class , dataProvider = "searchProvider")
     public void testData(String name, String surname, String zipCode, String message){
         CheckoutPage checkoutPage = goCheckOutPage();
         checkoutPage.enterFirstName(name);
