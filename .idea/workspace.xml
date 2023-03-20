@@ -114,9 +114,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.MenuTests.testAllItemsButton" />
-        <item itemvalue="TestNG./Users/solvd/Desktop/SaucedemoProject/SauceDemoArreglos/sauceDemo/testng.xml" />
-        <item itemvalue="TestNG.CheckoutTests.testData" />
         <item itemvalue="TestNG.LoginTests.testLogIn" />
+        <item itemvalue="TestNG.CheckoutTests.testData" />
+        <item itemvalue="TestNG./Users/solvd/Desktop/SaucedemoProject/SauceDemoArreglos/sauceDemo/testng.xml" />
+        <item itemvalue="TestNG.MenuTests.testAllItemsButton" />
       </list>
     </recent_temporary>
   </component>
